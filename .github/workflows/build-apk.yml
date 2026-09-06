@@ -40,6 +40,11 @@ jobs:
         run: |
           unzip -q PrecioUY_V1_source.zip -d buildsrc
 
+      - name: Fix lockscreen theme
+        run: |
+          sed -i '/windowShowWhenLocked/d' buildsrc/PrecioUY_V1/app/src/main/res/values/themes.xml
+          sed -i '/windowTurnScreenOn/d' buildsrc/PrecioUY_V1/app/src/main/res/values/themes.xml
+
       - name: Build APK
         working-directory: buildsrc/PrecioUY_V1
         run: gradle :app:assembleDebug --stacktrace
